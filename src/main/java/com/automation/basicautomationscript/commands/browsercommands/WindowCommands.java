@@ -8,7 +8,8 @@ import java.util.Set;
 
 public class WindowCommands {
     public static void main(String[] args) throws InterruptedException {
-        newTabbedWindow();
+        //newTabbedWindow();
+        openNewSeperateWindow();
     }
 
     public static void newTabbedWindow() throws InterruptedException {
@@ -38,6 +39,40 @@ public class WindowCommands {
         System.out.println(driver.getTitle());
         driver.switchTo().window(parentWindow);
         System.out.println(driver.getTitle());
+
+    }
+
+    public static void openNewSeperateWindow() throws InterruptedException {
+        WebDriver driver = WebDriverManager.chromedriver().create();
+        driver.manage().window().maximize();
+        driver.get("https://demo.automationtesting.in/Windows.html");
+        Thread.sleep(3000);
+        driver.findElement(By.xpath("//a[text()='Open New Seperate Windows']")).click();
+        Thread.sleep(3000);
+
+        //store the parent window
+        String parentWindow = driver.getWindowHandle();
+        System.out.println("Parent Window: " + parentWindow);
+
+        driver.findElement(By.xpath("//button[text()='click']")).click();
+        Thread.sleep(3000);
+        System.out.println(driver.getTitle());
+
+        Set<String> allWindows = driver.getWindowHandles();
+        for (String window : allWindows) {
+            if (!window.equals(parentWindow)) {
+                driver.switchTo().window(window);
+                break;
+            }
+        }
+        Thread.sleep(3000);
+        System.out.println(driver.getTitle());
+        driver.switchTo().window(parentWindow);
+        System.out.println(driver.getTitle());
+
+
+
+
 
     }
 }
