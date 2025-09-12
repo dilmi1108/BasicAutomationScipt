@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.automation.basicautimationscript</groupId>
-    <artifactId>BasicAutomationScipt</artifactId>
+    <artifactId>BasicAutomationScript</artifactId>
     <version>1.0-SNAPSHOT</version>
 
     <properties>

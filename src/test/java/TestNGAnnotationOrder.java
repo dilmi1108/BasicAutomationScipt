@@ -23,16 +23,16 @@ public class TestNGAnnotationOrder {
     }
 
     @Test
-    public void test1() {
-        System.out.println("Test 1");
+    public void testMethod1() {
+        System.out.println("TestMethod 1");
     }
     @Test
-    public void test2() {
-        System.out.println("Test 2");
+    public void testMethod2() {
+        System.out.println("TestMethod 2");
     }
     @Test
-    public void test3() {
-        System.out.println("Test 3");
+    public void testMethod3() {
+        System.out.println("TestMethod 3");
     }
 
     @AfterMethod
