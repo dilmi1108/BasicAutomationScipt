@@ -25,6 +25,14 @@ public class ReadWriteProperty {
         System.out.println(properties.get("port"));
     }
 
+    public String loadProperty(String key) throws IOException {
+        InputStream inputStream = new FileInputStream(FILE_NAME);
+        properties.load(inputStream);
+        return properties.getProperty(key);
+
+
+    }
+
     public static void main(String [] args) throws IOException {
        // new ReadWriteProperty().writeProperties();
         new ReadWriteProperty().readProperties();
