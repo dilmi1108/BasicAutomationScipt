@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="All Test Suite">
+    <test verbose="2" preserve-order="true"
+          name="D:/QAcourse/BasicAutomationScipt/src/test/java/TestNGAnnotationOrder.java">
+
+        <groups>
+            <run>
+      <!--          <exclude name="smoke"/> -->
+                <include name="regression"/>
+            </run>
+        </groups>
+
+        <classes>
+    <!--        <class name="TestNGAnnotationOrder">
+                <methods>
+                    <include name="testMethod1"/>
+                    <exclude name="testMethod2"/>
+                    <include name="testMethod3"/>
+                </methods>
+            </class>
+            <class name="TestNGMain">
+
+                </class> -->
+            <class name="TestNGGroups">
+
+
+            </class>
+
+        </classes>
+    </test>
+</suite>
