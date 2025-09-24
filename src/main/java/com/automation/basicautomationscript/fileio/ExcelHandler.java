@@ -1,15 +1,14 @@
 package com.automation.basicautomationscript.fileio;
 
+import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.CellType;
+import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.xssf.usermodel.XSSFCell;
 import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.OutputStream;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -47,7 +46,28 @@ public class ExcelHandler {
         });
         workbook.write(outputStream);
     }
+    public static void realFormExcel() throws IOException {
+        try(FileInputStream inputStream = new FileInputStream("studentDetails.xlsm")){
+            XSSFWorkbook workbook = new XSSFWorkbook(inputStream);
+            XSSFSheet sheet = workbook.getSheet("Sheet1");
+            List<Object[]> readData = new ArrayList<>();
+            for(Row row : sheet){
+                List<Object> rowData = new ArrayList<>();
+                for(Cell cell : row){
+                    switch (cell.getCellType()) {
+                        case STRING -> rowData.add(cell.getStringCellValue());
+                        case NUMERIC -> rowData.add(cell.getNumericCellValue());
+                        default -> rowData.add(null);
+                    }
+                }
+                readData.add(rowData.toArray());
+            }
+            readData.forEach(row -> System.out.println(Arrays.toString(row)));
+        }
+    }
+
     public static void main(String[] args) throws IOException {
-        ExcelHandler.writeToExcel();
+       // ExcelHandler.writeToExcel();
+        ExcelHandler.realFormExcel();
     }
 }
